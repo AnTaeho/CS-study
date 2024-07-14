@@ -1,3 +1,3 @@
 ## network
 
-* [dddd](https://github.com/CS-study/network/test.md)
+* [dddd](https://github.com/AnTaeHo/CS-study/network/test.md)
