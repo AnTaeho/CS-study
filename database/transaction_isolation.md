@@ -1,4 +1,4 @@
-# 트랜잭션 격리수준
+## 트랜잭션 격리수준
 
 트랜잭션에 일관성 없는 데이터를 허용하도록 하는 수준
 
@@ -9,19 +9,31 @@
 => 상황에 맞는 효율적인 락 전략이 필요하다.
 
 ## 관련 현상
-## DIRTY READ (더티 리드)
+### DIRTY READ (더티 리드)
 어떠한 트랜잭션에서 작업이 완료되지 않았음에도 다른 트랜잭션에서 볼 수 있는 현상
 
-## NON-REPEATABLE READ (반복 가능하지 않은 조회)
+<div align='center'>
+    <img src="image/dirty_read.png" width="400px">
+</div>
+
+### NON-REPEATABLE READ (반복 가능하지 않은 조회)
 
 - 동일한 SELECT 쿼리를 실행 했을 때 항상 같은 값을 보장해야 한다는 "REPEATABLE READ" 정합성에 어긋나는 현상 
 - 한 트랙잭션 내의 같은 행에 두 번 이상의 조회가 발생했는데, 그 값이 다른 현상이다.
 
-## PHANTOM READ (팬텀 리드)
+<div align='center'>
+    <img src="image/non_repeatable_read.png" width="400px">
+</div>
+
+### PHANTOM READ (팬텀 리드)
 
 - 한 트랜잭션 내에서 동일한 쿼리를 보냈을 때 이전 쿼리의 결과에서 존재하지 않던 레코드가 나타나는 현상
 - ex) 상품 리스트에 5000원 이상인 제품을 검색했을 때 3개가 조회 되었는데, \
 다시 조회하는 사이에 다른 트랜잭션에서 6000원짜리 물품이 추가되고 다시 조회하니 4개가 조회되는 상황
+
+<div align='center'>
+    <img src="image/phantom_read.png" width="400px">
+</div>
 
 위와 같은 현상을 모두 막으면 좋겠지만 그렇게 되면 제약사항이 많아지기 때문에 \ 
 4단계의 격리 수준을 만들어 허용하는 현상을 조절할 수 있다.
