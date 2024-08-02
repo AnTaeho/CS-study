@@ -61,5 +61,5 @@
 
 ### 요약
 <div align='center'>
-    <img src="image/isolation_level.png" width="400px">
+    <img src="image/isolation_level.png" width="600px">
 </div>
