@@ -26,6 +26,10 @@ DB Index 생성시 자주 사용되는 자료구조는 `B-Tree`, `B+Tree`, `Hash
 - 균형 트리로서 최상위 루트 노드에서 리프 노드까지의 거리가 동일하다
 
 ### B+Tree ⭐️
+<div align='center'>
+    <img src="image/b+tree.png" width="450px">
+</div>
+
 - B+Tree는 B-Tree를 확장 및 개선한 자료구조
 - 데이터의 빠른 접근을 위한 인덱스 열할만 하는 비단말 노드가 분리되어있다.
 - 관계형 DB에서 가장 많이 사용된다.
