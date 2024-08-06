@@ -22,7 +22,7 @@
 - 한 트랙잭션 내의 같은 행에 두 번 이상의 조회가 발생했는데, 그 값이 다른 현상이다.
 
 <div align='center'>
-    <img src="image/non_repeatable_read.png" width="400px">
+    <img src="image/non_repeatable_read.png" width="450px">
 </div>
 
 ### PHANTOM READ (팬텀 리드)
