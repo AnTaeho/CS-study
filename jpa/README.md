@@ -3,3 +3,4 @@
 ## 목차
 
 1. [JPA와 Hibernate](https://github.com/AnTaeho/CS-study/blob/main/jpa/jpa_hibernate.md)
+2. [영속성 컨텍스트](https://github.com/AnTaeho/CS-study/blob/main/jpa/persistence.md)
