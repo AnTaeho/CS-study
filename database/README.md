@@ -8,3 +8,4 @@
 4. [RDBMS와 NoSQL](https://github.com/AnTaeho/CS-study/blob/main/database/rdbms_nosql.md)
 5. [인덱스](https://github.com/AnTaeho/CS-study/blob/main/database/index.md)
 6. [데이터베이스 샤딩](https://github.com/AnTaeho/CS-study/blob/main/database/sharding.md)
+7. [캐시](https://github.com/AnTaeho/CS-study/blob/main/database/cache.md)
