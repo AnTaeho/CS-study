@@ -24,35 +24,40 @@ public void performancePointcut() {
 **HTTP 요청 정보 로깅** \
 RequestContextHolder의 getRequestAttributes() 메서드를 활용해서 현재 로그가 발생된 HTTP 요청 정보를 로깅합니다.
 
+**RequestContextHolder** \
+해당 클래스는 HTTP Request의 정보를 담아주는 객체로, Servlet이 생성될 때 초기화 된다. \
+즉, HTTP Request 가 들어올 때 생성되고, servlet이 destory 될 때 함꼐 clean 된다. \
+더 많은 정보를 가져오기 위해 ServletRequestAttributes 로 캐스팅해서 사용할 수 있다.
+
 ```java
 @Around("performancePointcut()")
 public Object start (ProceedingJoinPoint point) throws Throwable {
-    RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
-    if (requestAttributes instanceof ServletRequestAttributes) {
-        HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
-        String httpMethod = request.getMethod();
-        String requestURI = request.getRequestURI();
+  RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+  if (requestAttributes instanceof ServletRequestAttributes) {
+    HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
+    String httpMethod = request.getMethod();
+    String requestURI = request.getRequestURI();
 
-        log.info("HTTP Method: {}, Request URI: {}", httpMethod, requestURI);
-    } else {
-        log.info("No active HTTP request context available.");
-    }
-    
-    final Connection connection = (Connection) point.proceed();
-    queryCounter.set(new QueryCounter());
-    final QueryCounter counter = this.queryCounter.get();
+    log.info("HTTP Method: {}, Request URI: {}", httpMethod, requestURI);
+  } else {
+    log.info("No active HTTP request context available.");
+  }
 
-    final Connection proxyConnection = getProxyConnection(connection, counter);
-    queryCounter.remove();
-    return proxyConnection;
+  final Connection connection = (Connection) point.proceed();
+  queryCounter.set(new QueryCounter());
+  final QueryCounter counter = this.queryCounter.get();
+
+  final Connection proxyConnection = getProxyConnection(connection, counter);
+  queryCounter.remove();
+  return proxyConnection;
 }
 
 private Connection getProxyConnection(Connection connection, QueryCounter counter) {
-    return (Connection) Proxy.newProxyInstance(
-            getClass().getClassLoader(),
-            new Class[]{Connection.class},
-            new ConnectionHandler(connection, counter)
-    );
+  return (Connection) Proxy.newProxyInstance(
+          getClass().getClassLoader(),
+          new Class[]{Connection.class},
+          new ConnectionHandler(connection, counter)
+  );
 }
 ```
 
@@ -68,39 +73,39 @@ private Connection getProxyConnection(Connection connection, QueryCounter counte
 @Slf4j
 public class ConnectionHandler implements InvocationHandler {
 
-    private final Object target;
-    private final QueryCounter counter;
+  private final Object target;
+  private final QueryCounter counter;
 
-    public ConnectionHandler(Object target, QueryCounter counter) {
-        this.target = target;
-        this.counter = counter;
-    }
+  public ConnectionHandler(Object target, QueryCounter counter) {
+    this.target = target;
+    this.counter = counter;
+  }
 
-    @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        countPrepareStatement(method);
-        logQueryCount(method);
-        return method.invoke(target, args);
-    }
+  @Override
+  public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+    countPrepareStatement(method);
+    logQueryCount(method);
+    return method.invoke(target, args);
+  }
 
-    private void logQueryCount(Method method) {
-        if (method.getName().equals("close")) {
-            warnTooManyQuery();
-            log.info("====== 발생한 쿼리 수 : {} =======\n", counter.getCount());
-        }
+  private void logQueryCount(Method method) {
+    if (method.getName().equals("close")) {
+      warnTooManyQuery();
+      log.info("====== 발생한 쿼리 수 : {} =======\n", counter.getCount());
     }
+  }
 
-    private void countPrepareStatement(Method method) {
-        if (method.getName().equals("prepareStatement")) {
-            counter.increase();
-        }
+  private void countPrepareStatement(Method method) {
+    if (method.getName().equals("prepareStatement")) {
+      counter.increase();
     }
+  }
 
-    private void warnTooManyQuery() {
-        if (counter.isWarn()) {
-            log.warn("======= Too Many Query !!!! =======");
-        }
+  private void warnTooManyQuery() {
+    if (counter.isWarn()) {
+      log.warn("======= Too Many Query !!!! =======");
     }
+  }
 }
 ```
 
@@ -114,21 +119,23 @@ Connection 객체가 `prepareStatement()` 메서드를 호출 할 때 카운트�
 @Getter
 public class QueryCounter {
 
-    private int count;
+  private int count;
 
-    public void increase() {
-        count++;
-    }
+  public void increase() {
+    count++;
+  }
 
-    public boolean isWarn() {
-        return count > 10;
-    }
+  public boolean isWarn() {
+    return count > 10;
+  }
 }
 ```
 
 ### 결과
+<img src="https://tech-blog-image.s3.ap-northeast-2.amazonaws.com/image/7d36dc93-abfe-41a0-8d55-d230ac62e0abec2_counter.png" alt="이미지" width="777px"/>
+
 - Connection 객체를 사용하는 모든 요청에 쓰레드를 할당
 - 쓰레드가 할당된 **요청 내에 발생하는 쿼리의 수 추적**
 - 10개 이상의 쿼리 발생시 경고 로그 출력
-  <img src="https://tech-blog-image.s3.ap-northeast-2.amazonaws.com/image/a3272490-8bc2-4fdf-b396-ee96fa808a7e%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-09-03%20%EC%98%A4%ED%9B%84%208.10.31.png" alt="이미지" style="max-width: 100%; height: auto; display: block; margin: 0 auto;"/>
+
 
