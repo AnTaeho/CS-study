@@ -40,4 +40,5 @@ $ sudo vi /etc/fstab
 ### 결과
 
 - 스왑 메모리 공간을 설정해서 약 2GB의 임시 메모리 공간을 확보했다.
-  <img src="https://tech-blog-image.s3.ap-northeast-2.amazonaws.com/image/005b0101-ff13-44dd-9407-9a28a419f71f3c2.png" alt="이미지" style="max-width: 100%; height: auto; display: block; margin: 0 auto;"/>
+<img width="746" alt="005b0101-ff13-44dd-9407-9a28a419f71f3c2" src="https://github.com/user-attachments/assets/8555e7ea-ebfd-4cc1-9144-11d721bc4d2b">
+
