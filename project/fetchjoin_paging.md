@@ -3,7 +3,8 @@
 ### 문제 상황
 
 ### 연관관계
-<img src="https://tech-blog-image.s3.ap-northeast-2.amazonaws.com/image/225b2740-873d-42a1-b5dc-e8ba0990ecf3posttag.png" alt="이미지" style="max-width: 100%; height: auto; display: block; margin: 0 auto;"/>
+![225b2740-873d-42a1-b5dc-e8ba0990ecf3posttag](https://github.com/user-attachments/assets/73a0bc17-3306-418f-9979-56b3a4e12bc8)
+
 
 - Post-PostTag는 일대다 양방향 관계, PostTag-Tag는 다대일 양방향 관계
 - DTO로 변환 과정에서 N+1 문제가 발생했으나 페이지네이션으로 인해 fetch join을 사용할 수 없는 문제 발생
