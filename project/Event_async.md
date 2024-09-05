@@ -35,10 +35,22 @@
 
 → **제어하기 힘든 외부 API가 완료되지 않아도 회원 가입 처리 가능**
 
-<div align='center'>
-    <img src="image/event.png" width="500px">
-</div>
+### 코드
+```java
+@Component
+class EventListener(
+    private val mailService: MailService,
+) {
 
+    @Async("threadPoolTaskExecutor")
+    @EventListener
+    fun sendJoinMail(event: JoinEvent) {
+        val mailRequest = MailRequest(event.email)
+        mailService.sendAuthorizeMail(mailRequest)
+    }
+
+}
+```
 ### 결과
 
 - 회원 가입 완료 대기 시간 약 **5초 → 0.15초**로 단축
