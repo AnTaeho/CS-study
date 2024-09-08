@@ -63,9 +63,8 @@ public void test() {
 
 실제 서비스에선 자주 호출되는 초반 1 ~ 5 페이지까지 캐싱하기로 결정했습니다.
 
-<img src="https://tech-blog-image.s3.ap-northeast-2.amazonaws.com/image/87f37254-c59a-4145-8d87-004828e227e8page11.png" alt="이미지" style="max-width: 100%; height: auto; display: block; margin: 0 auto;"/>
-<img src="https://tech-blog-image.s3.ap-northeast-2.amazonaws.com/image/55a50a90-343e-4b82-a344-00139b456c74page12.png" alt="이미지" style="max-width: 100%; height: auto; display: block; margin: 0 auto;"/>
-
+![12](https://github.com/user-attachments/assets/1e4b697d-7a22-4fdb-868e-7b17779a0efb)
+![11](https://github.com/user-attachments/assets/8ba7c24b-6240-45c9-a078-f37f45f2fbac)
 
 ### `수치 변화`
 
@@ -78,9 +77,8 @@ public void test() {
 
 1 ~ 5 페이지 캐싱 적용 전후로 1 ~ 10 페이지 사이의 랜덤 페이지를 호출하는 테스트를 진행했습니다. 
 
-<img src="https://tech-blog-image.s3.ap-northeast-2.amazonaws.com/image/abf90e7e-c152-4498-b903-15592ca044bdpage110.png" alt="이미지" style="max-width: 100%; height: auto; display: block; margin: 0 auto;"/>
-<img src="https://tech-blog-image.s3.ap-northeast-2.amazonaws.com/image/c1212a7a-23ac-4f60-ab9e-1872351c6270page1102.png" alt="이미지" style="max-width: 100%; height: auto; display: block; margin: 0 auto;"/>
-
+![1101](https://github.com/user-attachments/assets/6a60bc71-3e34-42ea-95f6-01b02dc910d8)
+![1102](https://github.com/user-attachments/assets/0ac24d9c-03a3-4c02-a5fc-2523b1625044)
 
 ### `수치 변화`
 
@@ -95,8 +93,10 @@ public void test() {
 ~ 5 페이지 캐싱 적용 전후로 1 ~ 7 페이지 사이의 랜덤 페이지를 호출하는 테스트를 진행했습니다. \
 실제 서비스의 경우에도 이와 비슷한 비율로 캐시 히트/미스가 발생할 것이라고 예상했습니다.
 
-<img src="https://tech-blog-image.s3.ap-northeast-2.amazonaws.com/image/4c9d2c9e-b8e6-419d-8d00-0bccabce11e9page171.png" alt="이미지" style="max-width: 100%; height: auto; display: block; margin: 0 auto;"/>
-<img src="https://tech-blog-image.s3.ap-northeast-2.amazonaws.com/image/c55be845-dfe3-4fd5-957d-de4c40a7828cpage172.png" alt="이미지" style="max-width: 100%; height: auto; display: block; margin: 0 auto;"/>
+![171](https://github.com/user-attachments/assets/fb366985-25f2-45a7-a59b-7b2875fae519)
+![172](https://github.com/user-attachments/assets/a136ab1a-610d-4c25-a279-ad90311c30a3)
+
+
 
 ### `수치 변화`
 

@@ -132,7 +132,7 @@ public class QueryCounter {
 ```
 
 ### 결과
-<img src="https://tech-blog-image.s3.ap-northeast-2.amazonaws.com/image/7d36dc93-abfe-41a0-8d55-d230ac62e0abec2_counter.png" alt="이미지" width="777px"/>
+<img width="1029" alt="7d36dc93-abfe-41a0-8d55-d230ac62e0abec2_counter" src="https://github.com/user-attachments/assets/8b09c011-ad35-41fa-a6ee-e751409a8e55">
 
 - Connection 객체를 사용하는 모든 요청에 쓰레드를 할당
 - 쓰레드가 할당된 **요청 내에 발생하는 쿼리의 수 추적**

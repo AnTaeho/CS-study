@@ -17,7 +17,8 @@
 
 **2. 추상화와 IoC/DI**
 
-<img src="https://tech-blog-image.s3.ap-northeast-2.amazonaws.com/image/b16315ea-7c83-41f0-8559-3acec1733a27test1.png" alt="이미지" style="max-width: 100%; height: auto; display: block; margin: 0 auto;"/>
+![b16315ea-7c83-41f0-8559-3acec1733a27test1](https://github.com/user-attachments/assets/18e8261a-fc79-448a-b61b-5a84c5888e2b)
+
 
 - 현재 시간을 Time이라는 인터페이스로 추상화 해서 서비스 코드와 테스트 코드에서 구현 분리
 - 실제 서비스의 OnServiceTime은 스프링의 컴포넌트 스캔을 통해 의존성 주입해서 사용
